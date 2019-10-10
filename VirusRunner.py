@@ -1,3 +1,8 @@
+"""
+Virus Runner
+by Anmol, Anujan, Justin, Param
+"""
+
 import arcade
 
 # Config (window)
@@ -16,7 +21,7 @@ GRAVITY = 1.2
 PLAYER_JUMP_SPEED = 20
 
 
-class MyGame(arcade.Window):
+class VirusRunner(arcade.Window):
     def __init__(self):
         # Setup the window by initializing the parent class
         super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
@@ -118,7 +123,7 @@ class MyGame(arcade.Window):
 
 def main():
     # The main function (called when the program runs)
-    window = MyGame()
+    window = VirusRunner()
     window.setup()
     arcade.run()
 
