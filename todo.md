@@ -4,4 +4,5 @@
 - [ ] Make custom assets
 - [ ] Create a title screen
 - [ ] Create a help screen
+- [ ] Implement question and answers (import from CSV)
 - [ ] Move settings into a config file
