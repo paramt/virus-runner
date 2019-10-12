@@ -90,15 +90,15 @@ class VirusRunner(arcade.Window):
         self.player_list.draw()
 
         # Display score on the screen
-        score_text = f"Score: {self.score}"
-        arcade.draw_text(score_text, SCREEN_WIDTH - 100, SCREEN_HEIGHT - 50, arcade.csscolor.WHITE, 18)
+        score_text = f"{self.score} hertz"
+        arcade.draw_text(score_text, 20, SCREEN_HEIGHT - 50, arcade.csscolor.WHITE, 40, font_name="assets/fonts/ARCADECLASSIC.ttf")
 
     def draw_game_over(self):
-        arcade.draw_text("You lost!", 100, 100, arcade.csscolor.WHITE, 18)
-        arcade.draw_text("Press any button to restart", 100, 50, arcade.csscolor.WHITE, 18)
+        arcade.draw_text("Game   Over!", 400, 400, arcade.csscolor.WHITE, 100, font_name="assets/fonts/ARCADECLASSIC.ttf")
+        arcade.draw_text("Press   any   button   to   restart", 425, 350, arcade.csscolor.WHITE, 30, font_name="assets/fonts/ARCADECLASSIC.ttf")
 
     def draw_title_screen(self):
-        pass
+        arcade.draw_text("[placeholder for instructions page]", 400, 400, arcade.csscolor.WHITE, 30,)
 
     def on_draw(self):
         """ Render the screen """
