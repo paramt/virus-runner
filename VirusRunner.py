@@ -116,6 +116,7 @@ class VirusRunner(arcade.Window):
 
         # Change between game states
         if self.current_state == GAMEOVER:
+            self.score = 0
             self.setup()
 
         if key == arcade.key.SPACE or key == arcade.key.UP:
