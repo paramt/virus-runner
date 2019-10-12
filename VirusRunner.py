@@ -20,12 +20,20 @@ SPEED = 500
 GRAVITY = 1.2
 PLAYER_JUMP_SPEED = 20
 
+# Game states
+TITLE = 0
+RUNNING = 1
+GAMEOVER = 2
+
 
 class VirusRunner(arcade.Window):
     def __init__(self):
         # Setup the window by initializing the parent class
         super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
         arcade.set_background_color(BG_COLOR)
+
+        # Set current state to title screen
+        self.current_state = TITLE
 
         # Initialize sprite lists and the player sprite
         self.ground_list = None
@@ -72,9 +80,7 @@ class VirusRunner(arcade.Window):
         # Create the physics engine
         self.physics_engine = arcade.PhysicsEnginePlatformer(self.player_sprite, self.ground_list, GRAVITY)
 
-    def on_draw(self):
-        """ Render the screen """
-
+    def draw_game(self):
         # Clear the screen to the background color
         arcade.start_render()
 
@@ -87,8 +93,36 @@ class VirusRunner(arcade.Window):
         score_text = f"Score: {self.score}"
         arcade.draw_text(score_text, SCREEN_WIDTH - 100, SCREEN_HEIGHT - 50, arcade.csscolor.WHITE, 18)
 
+    def draw_game_over(self):
+        arcade.draw_text("You lost!", 100, 100, arcade.csscolor.WHITE, 18)
+        arcade.draw_text("Press any button to restart", 100, 50, arcade.csscolor.WHITE, 18)
+
+    def draw_title_screen(self):
+        pass
+
+    def on_draw(self):
+        """ Render the screen """
+        if self.current_state == RUNNING:
+            self.draw_game()
+        elif self.current_state == TITLE:
+            self.draw_title_screen()
+        elif self.current_state == GAMEOVER:
+            self.draw_game()
+            self.draw_game_over()
+
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed """
+
+        # Change between game states
+        if self.current_state == TITLE:
+            self.current_state = RUNNING
+        elif self.current_state == GAMEOVER:
+            self.setup()
+            self.current_state = RUNNING
+        elif self.current_state == GAMEOVER:
+            # Restart the game.
+            self.setup()
+            self.current_state = RUNNING
 
         if key == arcade.key.SPACE or key == arcade.key.UP:
             if self.physics_engine.can_jump():
@@ -96,29 +130,28 @@ class VirusRunner(arcade.Window):
 
     def update(self, delta_time):
         """ Movement and game logic """
+        if self.current_state == RUNNING:
+            # Check if any obstacles are hit
+            collision = arcade.check_for_collision_with_list(self.player_sprite, self.obstacle_list)
 
-        # Check if any obstacles are hit
-        collision = arcade.check_for_collision_with_list(self.player_sprite, self.obstacle_list)
+            if collision:
+                self.current_state = GAMEOVER
 
-        if collision:
-            self.setup()
-            self.score = 0
+            # Move all the obstacles forward (making it look the like player is moving forward)
+            for obstacle in self.obstacle_list:
+                # Multiply speed by delta time to make sure that the speed is consitent
+                # Otherwise the obstacles will move faster on faster processors and vice versa
+                obstacle.center_x -= SPEED * delta_time
 
-        # Move all the obstacles forward (making it look the like player is moving forward)
-        for obstacle in self.obstacle_list:
-            # Multiply speed by delta time to make sure that the speed is consitent
-            # Otherwise the obstacles will move faster on faster processors and vice versa
-            obstacle.center_x -= SPEED * delta_time
+                # Remove obstacles that aren't visible anymore (to prevent lag)
+                if obstacle.center_x < -25:
+                    self.obstacle_list.remove(obstacle)
+                    print("Removed obstacle")
 
-            # Remove obstacles that aren't visible anymore (to prevent lag)
-            if obstacle.center_x < -25:
-                self.obstacle_list.remove(obstacle)
-                print("Removed obstacle")
+            self.score += 1
 
-        self.score += 1
-
-        # Update all sprites
-        self.physics_engine.update()
+            # Update all sprites
+            self.physics_engine.update()
 
 def main():
     # The main function (called when the program runs)
