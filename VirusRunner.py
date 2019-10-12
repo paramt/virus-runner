@@ -54,14 +54,14 @@ class VirusRunner(arcade.Window):
         self.ground_list = arcade.SpriteList()
 
          # Set up the player
-        self.player_sprite = arcade.Sprite("images/player.png", CHARACTER_SCALING)
+        self.player_sprite = arcade.Sprite("assets/sprites/player.png", CHARACTER_SCALING)
         self.player_sprite.center_x = 64
         self.player_sprite.center_y = 120
         self.player_list.append(self.player_sprite)
 
         # Create the ground
         for x in range(0, 1450, 64):
-            ground = arcade.Sprite("images/grass.png", TILE_SCALING)
+            ground = arcade.Sprite("assets/sprites/grass.png", TILE_SCALING)
             ground.center_x = x
             ground.center_y = 32
             self.ground_list.append(ground)
@@ -73,7 +73,7 @@ class VirusRunner(arcade.Window):
 
         for coordinate in coordinate_list:
             # Add a crate on the ground
-            obstacle = arcade.Sprite("images/crate.png", TILE_SCALING)
+            obstacle = arcade.Sprite("assets/sprites/crate.png", TILE_SCALING)
             obstacle.position = coordinate
             self.obstacle_list.append(obstacle)
 
