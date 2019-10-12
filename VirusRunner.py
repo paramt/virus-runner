@@ -101,8 +101,6 @@ class VirusRunner(arcade.Window):
         collision = arcade.check_for_collision_with_list(self.player_sprite, self.obstacle_list)
 
         if collision:
-            #arcade.pause(1000)
-            #self.setup()
             self.setup()
 
         # Move all the obstacles forward (making it look the like player is moving forward)
