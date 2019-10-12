@@ -112,13 +112,11 @@ class VirusRunner(arcade.Window):
 
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed """
+        self.current_state = RUNNING
 
         # Change between game states
-        if self.current_state == TITLE:
-            self.current_state = RUNNING
-        elif self.current_state == GAMEOVER:
+        if self.current_state == GAMEOVER:
             self.setup()
-            self.current_state = RUNNING
 
         if key == arcade.key.SPACE or key == arcade.key.UP:
             if self.physics_engine.can_jump():
