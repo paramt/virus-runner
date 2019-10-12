@@ -119,10 +119,6 @@ class VirusRunner(arcade.Window):
         elif self.current_state == GAMEOVER:
             self.setup()
             self.current_state = RUNNING
-        elif self.current_state == GAMEOVER:
-            # Restart the game.
-            self.setup()
-            self.current_state = RUNNING
 
         if key == arcade.key.SPACE or key == arcade.key.UP:
             if self.physics_engine.can_jump():
