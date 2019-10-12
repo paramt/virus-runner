@@ -102,6 +102,7 @@ class VirusRunner(arcade.Window):
 
         if collision:
             self.setup()
+            self.score = 0
 
         # Move all the obstacles forward (making it look the like player is moving forward)
         for obstacle in self.obstacle_list:
