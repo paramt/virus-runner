@@ -3,8 +3,8 @@ Virus Runner
 by Anmol, Anujan, Justin, Param
 """
 
-import arcade
 import random
+import arcade
 from config import *
 
 class VirusRunner(arcade.Window):
