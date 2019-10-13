@@ -4,6 +4,7 @@ by Anmol, Anujan, Justin, Param
 """
 
 import arcade
+import random
 
 # Config (window)
 SCREEN_WIDTH = 1400
@@ -19,6 +20,7 @@ TILE_SCALING = 0.5
 SPEED = 500
 GRAVITY = 1.2
 PLAYER_JUMP_SPEED = 20
+DIFFICULTY = 0 # Initial difficulty (0 - 1)
 
 # Game states
 TITLE = 0
@@ -66,16 +68,12 @@ class VirusRunner(arcade.Window):
             ground.center_y = 32
             self.ground_list.append(ground)
 
-        # Put some crates on the ground
-        coordinate_list = [[1000, 96],
-                           [1500, 96],
-                           [750, 96]]
+        obstacle = arcade.Sprite("assets/sprites/crate.png", TILE_SCALING)
+        obstacle.position = [random.randint(SCREEN_WIDTH, SCREEN_WIDTH + 100), 96]
+        self.obstacle_list.append(obstacle)
 
-        for coordinate in coordinate_list:
-            # Add a crate on the ground
-            obstacle = arcade.Sprite("assets/sprites/crate.png", TILE_SCALING)
-            obstacle.position = coordinate
-            self.obstacle_list.append(obstacle)
+        self.num_of_obstacles = 0
+        self.difficulty = DIFFICULTY + 0.005
 
         # Create the physics engine
         self.physics_engine = arcade.PhysicsEnginePlatformer(self.player_sprite, self.ground_list, GRAVITY)
@@ -83,6 +81,23 @@ class VirusRunner(arcade.Window):
     def draw_game(self):
         # Clear the screen to the background color
         arcade.start_render()
+
+        # Randomly generate obstacles
+        obstacle = arcade.Sprite("assets/sprites/crate.png", TILE_SCALING)
+        obstacle.position = [random.randint(SCREEN_WIDTH, SCREEN_WIDTH + 100), 96]
+
+        try:
+            # Check to make sure that there is enough space between obstacles
+            gap_exists = obstacle.position[0] - self.obstacle_list[self.num_of_obstacles].position[0] > 250
+
+            if random.random() < self.difficulty and gap_exists:
+                self.obstacle_list.append(obstacle)
+                self.num_of_obstacles += 1
+                self.difficulty += 0.005
+        except IndexError:
+            self.obstacle_list.append(obstacle)
+            self.num_of_obstacles += 1
+            self.difficulty += 0.005
 
         # Draw the sprites
         self.obstacle_list.draw()
@@ -144,6 +159,7 @@ class VirusRunner(arcade.Window):
                 # Remove obstacles that aren't visible anymore (to prevent lag)
                 if obstacle.center_x < -25:
                     self.obstacle_list.remove(obstacle)
+                    self.num_of_obstacles -= 1
                     print("Removed obstacle")
 
             self.score += 1
