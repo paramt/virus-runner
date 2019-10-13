@@ -46,6 +46,8 @@ class VirusRunner(arcade.Window):
         # Initialize physics engine
         self.physics_engine = None
 
+        self.key_pressed = False
+
         # Inialize score at 0
         self.score = 0
 
@@ -138,8 +140,11 @@ class VirusRunner(arcade.Window):
         self.current_state = RUNNING
 
         if key == arcade.key.SPACE or key == arcade.key.UP:
-            if self.physics_engine.can_jump():
-                self.player_sprite.change_y = PLAYER_JUMP_SPEED
+            self.key_pressed = True
+
+    def on_key_release(self, key, modifiers):
+        if key == arcade.key.SPACE or key == arcade.key.UP:
+            self.key_pressed = False
 
     def update(self, delta_time):
         """ Movement and game logic """
@@ -161,6 +166,9 @@ class VirusRunner(arcade.Window):
                     self.obstacle_list.remove(obstacle)
                     self.num_of_obstacles -= 1
                     print("Removed obstacle")
+
+            if self.physics_engine.can_jump() and self.key_pressed:
+                self.player_sprite.change_y = PLAYER_JUMP_SPEED
 
             self.score += 1
 
