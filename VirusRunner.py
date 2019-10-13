@@ -138,11 +138,13 @@ class VirusRunner(arcade.Window):
 
         self.current_state = RUNNING
 
-        if key == arcade.key.SPACE or key == arcade.key.UP:
+        if key == arcade.key.SPACE or key == arcade.key.UP or key == arcade.key.W:
             self.key_pressed = True
+        elif key == arcade.key.DOWN or key == arcade.key.S:
+            self.player_sprite.change_y = -PLAYER_JUMP_SPEED
 
     def on_key_release(self, key, modifiers):
-        if key == arcade.key.SPACE or key == arcade.key.UP:
+        if key == arcade.key.SPACE or key == arcade.key.UP or key == arcade.key.W:
             self.key_pressed = False
 
     def update(self, delta_time):
