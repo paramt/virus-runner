@@ -18,8 +18,8 @@ TILE_SCALING = 0.5
 
 # Config (player)
 SPEED = 500
-GRAVITY = 1.2
-PLAYER_JUMP_SPEED = 20
+GRAVITY = 1.5
+PLAYER_JUMP_SPEED = 25
 DIFFICULTY = 0 # Initial difficulty (0 - 1)
 
 # Game states
