@@ -5,28 +5,7 @@ by Anmol, Anujan, Justin, Param
 
 import arcade
 import random
-
-# Config (window)
-SCREEN_WIDTH = 1400
-SCREEN_HEIGHT = 800
-SCREEN_TITLE = "Virus Run"
-BG_COLOR = arcade.csscolor.CORNFLOWER_BLUE
-
-# Config (sprites)
-CHARACTER_SCALING = 1
-TILE_SCALING = 0.5
-
-# Config (player)
-SPEED = 500
-GRAVITY = 1.5
-PLAYER_JUMP_SPEED = 25
-DIFFICULTY = 0 # Initial difficulty (0 - 1)
-
-# Game states
-TITLE = 0
-RUNNING = 1
-GAMEOVER = 2
-
+from config import *
 
 class VirusRunner(arcade.Window):
     def __init__(self):
