@@ -90,7 +90,7 @@ class VirusRunner(arcade.Window):
 
         try:
             # Check to make sure that there is enough space between obstacles
-            gap_exists = obstacle.position[0] - self.obstacle_list[self.num_of_obstacles].position[0] > 250
+            gap_exists = obstacle.position[0] - self.obstacle_list[self.num_of_obstacles].position[0] > 300
 
             if random.random() < self.difficulty and gap_exists:
                 self.obstacle_list.append(obstacle)
