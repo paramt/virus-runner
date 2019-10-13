@@ -41,7 +41,6 @@ class VirusRunner(arcade.Window):
         self.ground_list = None
         self.obstacle_list = None
         self.player_list = None
-        #self.player_sprite = None
 
         # Initialize physics engine
         self.physics_engine = None
@@ -176,7 +175,6 @@ class VirusRunner(arcade.Window):
             self.physics_engine.update()
 
 def main():
-    # The main function (called when the program runs)
     window = VirusRunner()
     window.setup()
     arcade.run()
