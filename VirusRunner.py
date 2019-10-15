@@ -36,19 +36,19 @@ class VirusRunner(arcade.Window):
         self.ground_list = arcade.SpriteList()
 
          # Set up the player
-        self.player_sprite = arcade.Sprite("assets/sprites/player.png", CHARACTER_SCALING)
+        self.player_sprite = arcade.Sprite(PLAYER_SPRITE, CHARACTER_SCALING)
         self.player_sprite.center_x = 64
         self.player_sprite.center_y = 120
         self.player_list.append(self.player_sprite)
 
         # Create the ground
         for x in range(0, 1450, 64):
-            ground = arcade.Sprite("assets/sprites/grass.png", TILE_SCALING)
+            ground = arcade.Sprite(GROUND_SPRITE, TILE_SCALING)
             ground.center_x = x
             ground.center_y = 32
             self.ground_list.append(ground)
 
-        obstacle = arcade.Sprite("assets/sprites/crate.png", TILE_SCALING)
+        obstacle = arcade.Sprite(OBSTACLE_SPRITE, TILE_SCALING)
         obstacle.position = [random.randint(SCREEN_WIDTH, SCREEN_WIDTH + 100), 96]
         self.obstacle_list.append(obstacle)
 
@@ -63,7 +63,7 @@ class VirusRunner(arcade.Window):
         arcade.start_render()
 
         # Randomly generate obstacles
-        obstacle = arcade.Sprite("assets/sprites/crate.png", TILE_SCALING)
+        obstacle = arcade.Sprite(OBSTACLE_SPRITE, TILE_SCALING)
         obstacle.position = [random.randint(SCREEN_WIDTH, SCREEN_WIDTH + 100), 96]
 
         try:
@@ -86,11 +86,11 @@ class VirusRunner(arcade.Window):
 
         # Display score on the screen
         score_text = f"{self.score} hertz"
-        arcade.draw_text(score_text, 20, SCREEN_HEIGHT - 50, arcade.csscolor.WHITE, 40, font_name="assets/fonts/ARCADECLASSIC.ttf")
+        arcade.draw_text(score_text, 20, SCREEN_HEIGHT - 50, arcade.csscolor.WHITE, 40, font_name=FONT)
 
     def draw_game_over(self):
-        arcade.draw_text("Game   Over!", 400, 400, arcade.csscolor.WHITE, 100, font_name="assets/fonts/ARCADECLASSIC.ttf")
-        arcade.draw_text("Press   any   button   to   restart", 425, 350, arcade.csscolor.WHITE, 30, font_name="assets/fonts/ARCADECLASSIC.ttf")
+        arcade.draw_text("Game   Over!", 400, 400, arcade.csscolor.WHITE, 100, font_name=FONT)
+        arcade.draw_text("Press   any   button   to   restart", 425, 350, arcade.csscolor.WHITE, 30, font_name=FONT)
 
     def draw_title_screen(self):
         background = arcade.load_texture("assets/sprites/background.png")
