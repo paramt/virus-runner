@@ -3,6 +3,7 @@ Virus Runner
 by Anmol, Anujan, Justin, Param
 """
 
+import math
 import random
 import arcade
 from config import *
@@ -139,7 +140,7 @@ class VirusRunner(arcade.Window):
             for obstacle in self.obstacle_list:
                 # Multiply speed by delta time to make sure that the speed is consitent
                 # Otherwise the obstacles will move faster on faster processors and vice versa
-                obstacle.center_x -= SPEED * delta_time
+                obstacle.center_x -= delta_time * (SPEED + math.sqrt(100*self.score))
 
                 # Remove obstacles that aren't visible anymore (to prevent lag)
                 if obstacle.center_x < -25:
