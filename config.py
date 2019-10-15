@@ -13,7 +13,7 @@ TILE_SCALING = 0.5
 # Movement
 SPEED = 500
 GRAVITY = 1.5
-PLAYER_JUMP_SPEED = 25
+JUMP_SPEED = 25
 DIFFICULTY = 0 # Initial difficulty (0 - 1)
 
 # Game states

@@ -120,7 +120,7 @@ class VirusRunner(arcade.Window):
         if key == arcade.key.SPACE or key == arcade.key.UP or key == arcade.key.W:
             self.key_pressed = True
         elif key == arcade.key.DOWN or key == arcade.key.S:
-            self.player_sprite.change_y = -PLAYER_JUMP_SPEED
+            self.player_sprite.change_y = -JUMP_SPEED
 
     def on_key_release(self, key, modifiers):
         if key == arcade.key.SPACE or key == arcade.key.UP or key == arcade.key.W:
@@ -148,7 +148,7 @@ class VirusRunner(arcade.Window):
                     print("Removed obstacle")
 
             if self.physics_engine.can_jump() and self.key_pressed:
-                self.player_sprite.change_y = PLAYER_JUMP_SPEED
+                self.player_sprite.change_y = JUMP_SPEED
 
             self.score += 1
 
