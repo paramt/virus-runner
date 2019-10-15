@@ -93,9 +93,9 @@ class VirusRunner(arcade.Window):
         arcade.draw_text("Press   any   button   to   restart", 425, 350, arcade.csscolor.WHITE, 30, font_name="assets/fonts/ARCADECLASSIC.ttf")
 
     def draw_title_screen(self):
-        self.background = arcade.load_texture("assets/sprites/background.png")
+        background = arcade.load_texture("assets/sprites/background.png")
         arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2,
-                                      SCREEN_WIDTH, SCREEN_HEIGHT, self.background)
+                                      SCREEN_WIDTH, SCREEN_HEIGHT, background)
 
     def on_draw(self):
         """ Render the screen """
