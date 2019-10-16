@@ -8,8 +8,8 @@ BG_COLOR = arcade.csscolor.CORNFLOWER_BLUE
 FONT = "assets/fonts/ARCADECLASSIC.ttf"
 
 # Sprites
-OBSTACLE_SPRITE = "assets/sprites/crate.png"
-GROUND_SPRITE = "assets/sprites/grass.png"
+OBSTACLE_SPRITE = "assets/sprites/pylon.png"
+GROUND_SPRITE = "assets/sprites/ground.png"
 PLAYER_SPRITE = "assets/sprites/player.png"
 CHARACTER_SCALING = 1
 TILE_SCALING = 0.5
