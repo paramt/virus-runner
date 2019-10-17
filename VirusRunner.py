@@ -12,7 +12,6 @@ class VirusRunner(arcade.Window):
     def __init__(self):
         # Setup the window by initializing the parent class
         super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-        arcade.set_background_color(BG_COLOR)
 
         # Set current state to title screen
         self.current_state = TITLE
@@ -63,6 +62,10 @@ class VirusRunner(arcade.Window):
         # Clear the screen to the background color
         arcade.start_render()
 
+        background = arcade.load_texture(BACKGROUND_IMAGE)
+        arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2,
+                                      SCREEN_WIDTH, SCREEN_HEIGHT, background)
+
         # Randomly generate obstacles
         obstacle = arcade.Sprite(OBSTACLE_SPRITE, TILE_SCALING)
         obstacle.position = [random.randint(SCREEN_WIDTH, SCREEN_WIDTH + 100), 96]
@@ -94,7 +97,12 @@ class VirusRunner(arcade.Window):
         arcade.draw_text("Press   any   button   to   restart", 425, 350, arcade.csscolor.WHITE, 30, font_name=FONT)
 
     def draw_title_screen(self):
-        background = arcade.load_texture("assets/sprites/background.png")
+        background = arcade.load_texture(TITLE_IMAGE)
+        arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2,
+                                      SCREEN_WIDTH, SCREEN_HEIGHT, background)
+
+    def draw_help_screen(self):
+        background = arcade.load_texture(HELP_IMAGE)
         arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2,
                                       SCREEN_WIDTH, SCREEN_HEIGHT, background)
 
@@ -102,6 +110,8 @@ class VirusRunner(arcade.Window):
         """ Render the screen """
         if self.current_state == RUNNING:
             self.draw_game()
+        elif self.current_state == HELP:
+            self.draw_help_screen()
         elif self.current_state == TITLE:
             self.draw_title_screen()
         elif self.current_state == GAMEOVER:
@@ -116,7 +126,13 @@ class VirusRunner(arcade.Window):
             self.score = 0
             self.setup()
 
-        self.current_state = RUNNING
+        elif self.current_state == TITLE:
+            if key == arcade.key.SPACE:
+                self.current_state = RUNNING
+            elif key == arcade.key.H:
+                self.current_state = HELP
+        elif self.current_state == HELP:
+            self.current_state = RUNNING
 
         if key == arcade.key.SPACE or key == arcade.key.UP or key == arcade.key.W:
             self.key_pressed = True

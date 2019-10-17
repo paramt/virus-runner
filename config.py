@@ -4,7 +4,6 @@ import arcade
 SCREEN_WIDTH = 1400
 SCREEN_HEIGHT = 800
 SCREEN_TITLE = "Virus Run"
-BG_COLOR = arcade.csscolor.CORNFLOWER_BLUE
 FONT = "assets/fonts/ARCADECLASSIC.ttf"
 
 # Sprites
@@ -14,6 +13,11 @@ PLAYER_SPRITE = "assets/sprites/player.png"
 CHARACTER_SCALING = 1
 TILE_SCALING = 0.5
 
+# Backgrounds
+TITLE_IMAGE = "assets/images/title.png"
+BACKGROUND_IMAGE = "assets/images/background.png"
+HELP_IMAGE = "assets/images/help.png"
+
 # Movement
 SPEED = 500
 GRAVITY = 1.5
@@ -21,6 +25,7 @@ JUMP_SPEED = 25
 DIFFICULTY = 0 # Initial difficulty (0 - 1)
 
 # Game states
-TITLE = 0
-RUNNING = 1
-GAMEOVER = 2
+TITLE = 1
+HELP = 2 
+RUNNING = 3
+GAMEOVER = 4
