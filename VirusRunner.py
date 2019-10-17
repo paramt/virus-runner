@@ -125,6 +125,7 @@ class VirusRunner(arcade.Window):
         if self.current_state == GAMEOVER:
             self.score = 0
             self.setup()
+            self.current_state = RUNNING
 
         elif self.current_state == TITLE:
             if key == arcade.key.SPACE:
