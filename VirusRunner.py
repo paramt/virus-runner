@@ -153,10 +153,11 @@ class VirusRunner(arcade.Window):
         if self.current_state == GAMEOVER:
             if key == self.correct_answer + 96:
                 print("Correct answer! Continuing")
-            else:
+            elif key == 97 or key == 98 or key == 99 or key == 100:
                 print("Wrong answer! Restarting")
                 self.score = 0
 
+            self.waiting_on_input = False
             self.setup()
             self.current_state = RUNNING
 
