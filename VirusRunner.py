@@ -93,8 +93,8 @@ class VirusRunner(arcade.Window):
         arcade.draw_text(score_text, 20, SCREEN_HEIGHT - 50, arcade.csscolor.WHITE, 40, font_name=FONT)
 
     def draw_game_over(self):
-        arcade.draw_text("Game   Over!", 400, 400, arcade.csscolor.WHITE, 100, font_name=FONT)
-        arcade.draw_text("Press   any   button   to   restart", 425, 350, arcade.csscolor.WHITE, 30, font_name=FONT)
+        arcade.draw_text("Game Over!", 400, 400, arcade.csscolor.WHITE, 100, font_name=FONT)
+        arcade.draw_text("Press any button to restart", 425, 350, arcade.csscolor.WHITE, 30, font_name=FONT)
 
     def draw_title_screen(self):
         background = arcade.load_texture(TITLE_IMAGE)
