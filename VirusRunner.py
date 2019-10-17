@@ -37,7 +37,7 @@ class VirusRunner(arcade.Window):
 
          # Set up the player
         self.player_sprite = arcade.Sprite(PLAYER_SPRITE, CHARACTER_SCALING)
-        self.player_sprite.center_x = 64
+        self.player_sprite.center_x = 200
         self.player_sprite.center_y = 120
         self.player_list.append(self.player_sprite)
 
