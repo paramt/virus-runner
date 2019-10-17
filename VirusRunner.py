@@ -3,6 +3,7 @@ Virus Runner
 by Anmol, Anujan, Justin, Param
 """
 
+import csv
 import math
 import random
 import arcade
@@ -25,6 +26,7 @@ class VirusRunner(arcade.Window):
         self.physics_engine = None
 
         self.key_pressed = False
+        self.waiting_on_input = False
 
         # Inialize score at 0
         self.score = 0
@@ -92,9 +94,34 @@ class VirusRunner(arcade.Window):
         score_text = f"{self.score} hertz"
         arcade.draw_text(score_text, 20, SCREEN_HEIGHT - 50, arcade.csscolor.WHITE, 40, font_name=FONT)
 
+    def draw_question(self):
+        if not self.waiting_on_input:
+            with open('questions.csv') as questions:
+                rows = questions.readlines()
+                data = random.choice(list(csv.reader(rows,
+                                                     quotechar='"',
+                                                     delimiter=',',
+                                                     quoting=csv.QUOTE_ALL,
+                                                     skipinitialspace=True
+                                                    )))
+            self.question = data[0]
+            self.correct_answer = int(data[1])
+            self.waiting_on_input = True
+
+            self.option1 = data[2]
+            self.option2 = data[3]
+            self.option3 = data[4]
+            self.option4 = data[5]
+
+        arcade.draw_text(self.question, 0, 350, arcade.csscolor.WHITE, 30, font_name=FONT, width=SCREEN_WIDTH, align="center")
+
+        arcade.draw_text("A: " + self.option1, 0, 300, arcade.csscolor.WHITE, 25, font_name=FONT)
+        arcade.draw_text("B: " + self.option2, 0, 270, arcade.csscolor.WHITE, 25, font_name=FONT)
+        arcade.draw_text("C: " + self.option3, 0, 240, arcade.csscolor.WHITE, 25, font_name=FONT)
+        arcade.draw_text("D: " + self.option4, 0, 210, arcade.csscolor.WHITE, 25, font_name=FONT)
+
     def draw_game_over(self):
         arcade.draw_text("Game Over!", 400, 400, arcade.csscolor.WHITE, 100, font_name=FONT)
-        arcade.draw_text("Press any button to restart", 425, 350, arcade.csscolor.WHITE, 30, font_name=FONT)
 
     def draw_title_screen(self):
         background = arcade.load_texture(TITLE_IMAGE)
@@ -117,13 +144,19 @@ class VirusRunner(arcade.Window):
         elif self.current_state == GAMEOVER:
             self.draw_game()
             self.draw_game_over()
+            self.draw_question()
 
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed """
 
         # Change between game states
         if self.current_state == GAMEOVER:
-            self.score = 0
+            if key == self.correct_answer + 96:
+                print("Correct answer! Continuing")
+            else:
+                print("Wrong answer! Restarting")
+                self.score = 0
+
             self.setup()
             self.current_state = RUNNING
 
