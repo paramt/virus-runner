@@ -153,13 +153,15 @@ class VirusRunner(arcade.Window):
         if self.current_state == GAMEOVER:
             if key == self.correct_answer + 96:
                 print("Correct answer! Continuing")
+                self.waiting_on_input = False
+                self.setup()
+                self.current_state = RUNNING
             elif key == 97 or key == 98 or key == 99 or key == 100:
                 print("Wrong answer! Restarting")
+                self.waiting_on_input = False
+                self.setup()
                 self.score = 0
-
-            self.waiting_on_input = False
-            self.setup()
-            self.current_state = RUNNING
+                self.current_state = RUNNING
 
         elif self.current_state == TITLE:
             if key == arcade.key.SPACE:
@@ -169,10 +171,11 @@ class VirusRunner(arcade.Window):
         elif self.current_state == HELP:
             self.current_state = RUNNING
 
-        if key == arcade.key.SPACE or key == arcade.key.UP or key == arcade.key.W:
-            self.key_pressed = True
-        elif key == arcade.key.DOWN or key == arcade.key.S:
-            self.player_sprite.change_y = -JUMP_SPEED
+        elif self.current_state == RUNNING:
+            if key == arcade.key.SPACE or key == arcade.key.UP or key == arcade.key.W:
+                self.key_pressed = True
+            elif key == arcade.key.DOWN or key == arcade.key.S:
+                self.player_sprite.change_y = -JUMP_SPEED
 
     def on_key_release(self, key, modifiers):
         if key == arcade.key.SPACE or key == arcade.key.UP or key == arcade.key.W:
