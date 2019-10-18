@@ -10,7 +10,7 @@ FONT = "assets/fonts/ARCADECLASSIC.ttf"
 OBSTACLE_SPRITE = "assets/sprites/pylon.png"
 GROUND_SPRITE = "assets/sprites/ground.png"
 PLAYER_SPRITE = "assets/sprites/player.png"
-CHARACTER_SCALING = 1
+CHARACTER_SCALING = 2
 TILE_SCALING = 0.5
 
 # Backgrounds
