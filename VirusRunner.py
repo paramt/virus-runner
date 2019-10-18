@@ -22,7 +22,7 @@ class VirusRunner(arcade.Window):
         self.obstacle_list = None
         self.player_list = None
 
-        # Initialize physics engine
+        # Initialize physics engine 
         self.physics_engine = None
 
         self.key_pressed = False
@@ -91,7 +91,7 @@ class VirusRunner(arcade.Window):
         self.player_list.draw()
 
         # Display score on the screen
-        score_text = f"{self.score} hertz"
+        score_text = f"{self.score/10} meters"
         arcade.draw_text(score_text, 20, SCREEN_HEIGHT - 50, arcade.csscolor.WHITE, 40, font_name=FONT)
 
     def draw_question(self):
@@ -120,8 +120,9 @@ class VirusRunner(arcade.Window):
         arcade.draw_text("C: " + self.option3, 0, 240, arcade.csscolor.WHITE, 25, font_name=FONT)
         arcade.draw_text("D: " + self.option4, 0, 210, arcade.csscolor.WHITE, 25, font_name=FONT)
 
-    def draw_game_over(self):
-        arcade.draw_text("Game Over!", 400, 400, arcade.csscolor.WHITE, 100, font_name=FONT)
+        background = arcade.load_texture("assets/images/questions/" + self.question + ".png")
+        arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2,
+                                      SCREEN_WIDTH, SCREEN_HEIGHT, background)
 
     def draw_title_screen(self):
         background = arcade.load_texture(TITLE_IMAGE)
@@ -143,7 +144,6 @@ class VirusRunner(arcade.Window):
             self.draw_title_screen()
         elif self.current_state == GAMEOVER:
             self.draw_game()
-            self.draw_game_over()
             self.draw_question()
 
     def on_key_press(self, key, modifiers):
