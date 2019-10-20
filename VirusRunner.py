@@ -22,7 +22,7 @@ class VirusRunner(arcade.Window):
         self.obstacle_list = None
         self.player_list = None
 
-        # Initialize physics engine 
+        # Initialize physics engine
         self.physics_engine = None
 
         self.key_pressed = False
@@ -107,18 +107,6 @@ class VirusRunner(arcade.Window):
             self.question = data[0]
             self.correct_answer = int(data[1])
             self.waiting_on_input = True
-
-            self.option1 = data[2]
-            self.option2 = data[3]
-            self.option3 = data[4]
-            self.option4 = data[5]
-
-        arcade.draw_text(self.question, 0, 350, arcade.csscolor.WHITE, 30, font_name=FONT, width=SCREEN_WIDTH, align="center")
-
-        arcade.draw_text("A: " + self.option1, 0, 300, arcade.csscolor.WHITE, 25, font_name=FONT)
-        arcade.draw_text("B: " + self.option2, 0, 270, arcade.csscolor.WHITE, 25, font_name=FONT)
-        arcade.draw_text("C: " + self.option3, 0, 240, arcade.csscolor.WHITE, 25, font_name=FONT)
-        arcade.draw_text("D: " + self.option4, 0, 210, arcade.csscolor.WHITE, 25, font_name=FONT)
 
         background = arcade.load_texture("assets/images/questions/" + self.question + ".png")
         arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2,
