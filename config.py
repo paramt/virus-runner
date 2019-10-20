@@ -22,7 +22,7 @@ HELP_IMAGE = "assets/images/help.png"
 # Movement
 SPEED = 500
 GRAVITY = 1.5
-JUMP_SPEED = 25
+JUMP_SPEED = 27
 DIFFICULTY = 0 # Initial difficulty (0 - 1)
 
 # Game states
