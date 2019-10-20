@@ -12,7 +12,7 @@ GROUND_SPRITE = "assets/sprites/ground.png"
 PLAYER_SPRITE = "assets/sprites/player.png"
 CHARACTER_SCALING = 2
 TILE_SCALING = 0.5
-OBSTACLE_SCALING = 2
+OBSTACLE_SCALING = 1.75
 
 # Backgrounds
 TITLE_IMAGE = "assets/images/title.png"
@@ -22,7 +22,7 @@ HELP_IMAGE = "assets/images/help.png"
 # Movement
 SPEED = 500
 GRAVITY = 1.5
-JUMP_SPEED = 27
+JUMP_SPEED = 30
 DIFFICULTY = 0 # Initial difficulty (0 - 1)
 
 # Game states
