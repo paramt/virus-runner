@@ -12,6 +12,7 @@ GROUND_SPRITE = "assets/sprites/ground.png"
 PLAYER_SPRITE = "assets/sprites/player.png"
 CHARACTER_SCALING = 2
 TILE_SCALING = 0.5
+OBSTACLE_SCALING = 2
 
 # Backgrounds
 TITLE_IMAGE = "assets/images/title.png"

@@ -50,7 +50,7 @@ class VirusRunner(arcade.Window):
             ground.center_y = 32
             self.ground_list.append(ground)
 
-        obstacle = arcade.Sprite(OBSTACLE_SPRITE, TILE_SCALING)
+        obstacle = arcade.Sprite(OBSTACLE_SPRITE, OBSTACLE_SCALING)
         obstacle.position = [random.randint(SCREEN_WIDTH, SCREEN_WIDTH + 100), 96]
         self.obstacle_list.append(obstacle)
 
@@ -69,7 +69,7 @@ class VirusRunner(arcade.Window):
                                       SCREEN_WIDTH, SCREEN_HEIGHT, background)
 
         # Randomly generate obstacles
-        obstacle = arcade.Sprite(OBSTACLE_SPRITE, TILE_SCALING)
+        obstacle = arcade.Sprite(OBSTACLE_SPRITE, OBSTACLE_SCALING)
         obstacle.position = [random.randint(SCREEN_WIDTH, SCREEN_WIDTH + 100), 96]
 
         try:
