@@ -27,6 +27,8 @@ class VirusRunner(arcade.Window):
 
         self.key_pressed = False
         self.waiting_on_input = False
+        self.start_zoom = False
+        self.scale = 1
 
         # Inialize score at 0
         self.score = 0
@@ -112,10 +114,10 @@ class VirusRunner(arcade.Window):
         arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2,
                                       SCREEN_WIDTH, SCREEN_HEIGHT, background)
 
-    def draw_title_screen(self):
+    def draw_title_screen(self, width, height):
         background = arcade.load_texture(TITLE_IMAGE)
         arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2,
-                                      SCREEN_WIDTH, SCREEN_HEIGHT, background)
+                                      width, height, background)
 
     def draw_help_screen(self):
         background = arcade.load_texture(HELP_IMAGE)
@@ -129,10 +131,16 @@ class VirusRunner(arcade.Window):
         elif self.current_state == HELP:
             self.draw_help_screen()
         elif self.current_state == TITLE:
-            self.draw_title_screen()
+            self.draw_title_screen(SCREEN_WIDTH * self.scale, SCREEN_HEIGHT * self.scale)
         elif self.current_state == GAMEOVER:
             self.draw_game()
             self.draw_question()
+
+        if self.start_zoom and self:
+            self.scale += 0.05
+
+        if self.scale >= 3:
+            self.current_state = RUNNING
 
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed """
@@ -153,7 +161,7 @@ class VirusRunner(arcade.Window):
 
         elif self.current_state == TITLE:
             if key == arcade.key.SPACE:
-                self.current_state = RUNNING
+                self.start_zoom = True
             elif key == arcade.key.H:
                 self.current_state = HELP
         elif self.current_state == HELP:
