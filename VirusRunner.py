@@ -25,6 +25,7 @@ class VirusRunner(arcade.Window):
         # Initialize physics engine
         self.physics_engine = None
 
+        # Initialize states and other variables
         self.key_pressed = False
         self.waiting_on_input = False
         self.start_zoom = False
@@ -128,14 +129,19 @@ class VirusRunner(arcade.Window):
         """ Render the screen """
         if self.current_state == RUNNING:
             self.draw_game()
+
         elif self.current_state == HELP:
             self.draw_help_screen()
+
         elif self.current_state == TITLE:
             self.draw_title_screen(SCREEN_WIDTH * self.scale, SCREEN_HEIGHT * self.scale)
+
             if self.start_zoom and self:
                 self.scale += 0.05
+
             if self.scale >= 3:
                 self.current_state = RUNNING
+
         elif self.current_state == GAMEOVER:
             self.draw_game()
             self.draw_question()
