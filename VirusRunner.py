@@ -132,15 +132,13 @@ class VirusRunner(arcade.Window):
             self.draw_help_screen()
         elif self.current_state == TITLE:
             self.draw_title_screen(SCREEN_WIDTH * self.scale, SCREEN_HEIGHT * self.scale)
+            if self.start_zoom and self:
+                self.scale += 0.05
+            if self.scale >= 3:
+                self.current_state = RUNNING
         elif self.current_state == GAMEOVER:
             self.draw_game()
             self.draw_question()
-
-        if self.start_zoom and self:
-            self.scale += 0.05
-
-        if self.scale >= 3:
-            self.current_state = RUNNING
 
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed """
