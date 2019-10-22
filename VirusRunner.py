@@ -141,7 +141,7 @@ class VirusRunner(arcade.Window):
             if self.start_zoom and self:
                 self.scale += 0.05
 
-            if self.scale >= 3:
+            if self.scale >= 3.5:
                 self.current_state = RUNNING
 
         elif self.current_state == GAMEOVER:
