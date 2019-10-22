@@ -46,6 +46,8 @@ class VirusRunner(arcade.Window):
         self.player_sprite.center_y = 120
         self.player_list.append(self.player_sprite)
 
+        self.player_sprite.texture = arcade.load_texture(PLAYER_SPRITE, scale=CHARACTER_SCALING) 
+
         # Create the ground
         for x in range(0, 1450, 64):
             ground = arcade.Sprite(GROUND_SPRITE, TILE_SCALING)
@@ -202,8 +204,12 @@ class VirusRunner(arcade.Window):
                     self.num_of_obstacles -= 1
                     print("Removed obstacle")
 
-            if self.physics_engine.can_jump() and self.key_pressed:
-                self.player_sprite.change_y = JUMP_SPEED
+            if self.physics_engine.can_jump():
+                self.player_sprite.texture = arcade.load_texture(PLAYER_SPRITE, scale=CHARACTER_SCALING)
+
+                if self.key_pressed:
+                    self.player_sprite.change_y = JUMP_SPEED
+                    self.player_sprite.texture = arcade.load_texture(PLAYER_JUMP, scale=CHARACTER_SCALING)
 
             self.score += 1
 
