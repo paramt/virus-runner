@@ -172,7 +172,7 @@ class VirusRunner(arcade.Window):
             elif key == arcade.key.H:
                 self.current_state = HELP
         elif self.current_state == HELP:
-            self.current_state = RUNNING
+            self.current_state = TITLE
 
         elif self.current_state == RUNNING:
             if key == arcade.key.SPACE or key == arcade.key.UP or key == arcade.key.W:
