@@ -61,6 +61,7 @@ class VirusRunner(arcade.Window):
 
         self.num_of_obstacles = 0
         self.difficulty = DIFFICULTY + 0.005
+        self.is_ducking = False
 
         # Create the physics engine
         self.physics_engine = arcade.PhysicsEnginePlatformer(self.player_sprite, self.ground_list, GRAVITY)
@@ -177,11 +178,14 @@ class VirusRunner(arcade.Window):
             if key == arcade.key.SPACE or key == arcade.key.UP or key == arcade.key.W:
                 self.key_pressed = True
             elif key == arcade.key.DOWN or key == arcade.key.S:
-                self.player_sprite.change_y = -JUMP_SPEED
+                self.player_sprite.change_y = -STOMP_SPEED
+                self.is_ducking = True
 
     def on_key_release(self, key, modifiers):
         if key == arcade.key.SPACE or key == arcade.key.UP or key == arcade.key.W:
             self.key_pressed = False
+        if key == arcade.key.DOWN or key == arcade.key.S:
+            self.is_ducking = False
 
     def update(self, delta_time):
         """ Movement and game logic """
@@ -205,7 +209,10 @@ class VirusRunner(arcade.Window):
                     print("Removed obstacle")
 
             if self.physics_engine.can_jump():
-                self.player_sprite.texture = arcade.load_texture(PLAYER_SPRITE, scale=CHARACTER_SCALING)
+                if self.is_ducking:
+                    self.player_sprite.texture = arcade.load_texture(PLAYER_DUCK, scale=CHARACTER_SCALING)
+                else:
+                    self.player_sprite.texture = arcade.load_texture(PLAYER_SPRITE, scale=CHARACTER_SCALING)
 
                 if self.key_pressed:
                     self.player_sprite.change_y = JUMP_SPEED

@@ -10,7 +10,7 @@ FONT = "assets/fonts/ARCADECLASSIC.ttf"
 OBSTACLE_SPRITE = "assets/sprites/pylon.png"
 GROUND_SPRITE = "assets/sprites/ground.png"
 PLAYER_SPRITE = "assets/sprites/player.png"
-PLAYER_FALL = "assets/sprites/playerfall.png"
+PLAYER_DUCK = "assets/sprites/Playerduck.png"
 PLAYER_JUMP = "assets/sprites/playerjump.png"
 CHARACTER_SCALING = 2
 TILE_SCALING = 0.5
@@ -25,6 +25,7 @@ HELP_IMAGE = "assets/images/help.png"
 SPEED = 500
 GRAVITY = 1.5
 JUMP_SPEED = 30
+STOMP_SPEED = 45
 DIFFICULTY = 0 # Initial difficulty (0 - 1)
 
 # Game states
