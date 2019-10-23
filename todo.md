@@ -6,3 +6,5 @@
 - [x] Create a help screen (with diagram on controls)
 - [x] Implement question and answers (import from CSV)
 - [x] Move settings into a config file
+- [ ] Change "press space to continue" to "press any key to go back"
+- [ ] Fix "and and" grammar mistake in question 10
