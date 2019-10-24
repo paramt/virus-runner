@@ -127,6 +127,11 @@ class VirusRunner(arcade.Window):
         background = arcade.load_texture(HELP_IMAGE)
         arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2,
                                       SCREEN_WIDTH, SCREEN_HEIGHT, background)
+    
+    def draw_controls_screen(self):
+        background = arcade.load_texture(CONTROLS_IMAGE)
+        arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2,
+                                      SCREEN_WIDTH, SCREEN_HEIGHT, background)
 
     def on_draw(self):
         """ Render the screen """
@@ -135,6 +140,9 @@ class VirusRunner(arcade.Window):
 
         elif self.current_state == HELP:
             self.draw_help_screen()
+
+        elif self.current_state == CONTROLS:
+            self.draw_controls_screen()
 
         elif self.current_state == TITLE:
             self.draw_title_screen(SCREEN_WIDTH * self.scale, SCREEN_HEIGHT * self.scale)
@@ -172,6 +180,8 @@ class VirusRunner(arcade.Window):
             elif key == arcade.key.H:
                 self.current_state = HELP
         elif self.current_state == HELP:
+            self.current_state = CONTROLS
+        elif self.current_state == CONTROLS:
             self.current_state = TITLE
 
         elif self.current_state == RUNNING:
