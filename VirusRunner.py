@@ -33,6 +33,7 @@ class VirusRunner(arcade.Window):
 
         # Inialize score at 0
         self.score = 0
+        self.high_score = 0
 
     def setup(self):
         # Create the sprite lists
@@ -46,7 +47,7 @@ class VirusRunner(arcade.Window):
         self.player_sprite.center_y = 120
         self.player_list.append(self.player_sprite)
 
-        self.player_sprite.texture = arcade.load_texture(PLAYER_SPRITE, scale=CHARACTER_SCALING) 
+        self.player_sprite.texture = arcade.load_texture(PLAYER_SPRITE, scale=CHARACTER_SCALING)
 
         # Create the ground
         for x in range(0, 1450, 64):
@@ -99,6 +100,8 @@ class VirusRunner(arcade.Window):
         # Display score on the screen
         score_text = f"{self.score/10} meters"
         arcade.draw_text(score_text, 20, SCREEN_HEIGHT - 50, arcade.csscolor.WHITE, 40, font_name=FONT)
+        high_score = f"High score: {self.high_score/10}"
+        arcade.draw_text(high_score, 20, SCREEN_HEIGHT - 100, arcade.csscolor.WHITE, 40, font_name=FONT)
 
     def draw_question(self):
         if not self.waiting_on_input:
@@ -127,7 +130,7 @@ class VirusRunner(arcade.Window):
         background = arcade.load_texture(HELP_IMAGE)
         arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2,
                                       SCREEN_WIDTH, SCREEN_HEIGHT, background)
-    
+
     def draw_controls_screen(self):
         background = arcade.load_texture(CONTROLS_IMAGE)
         arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2,
@@ -170,6 +173,10 @@ class VirusRunner(arcade.Window):
             elif key == 97 or key == 98 or key == 99 or key == 100:
                 print("Wrong answer! Restarting")
                 self.waiting_on_input = False
+
+                if self.score > self.high_score:
+                    self.high_score = self.score
+
                 self.setup()
                 self.score = 0
                 self.current_state = RUNNING
