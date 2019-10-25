@@ -186,6 +186,8 @@ class VirusRunner(arcade.Window):
                 self.start_zoom = True
             elif key == arcade.key.H:
                 self.current_state = HELP
+            elif key == arcade.key.ESCAPE:
+                exit()
         elif self.current_state == HELP:
             self.current_state = CONTROLS
         elif self.current_state == CONTROLS:
