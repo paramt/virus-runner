@@ -35,6 +35,8 @@ class VirusRunner(arcade.Window):
         self.score = 0
         self.high_score = 0
 
+        arcade.play_sound(arcade.load_sound("assets/sounds/music.mp3"))
+
     def setup(self):
         # Create the sprite lists
         self.player_list = arcade.SpriteList()
