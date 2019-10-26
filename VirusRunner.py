@@ -168,11 +168,13 @@ class VirusRunner(arcade.Window):
             if key == self.correct_answer + 96:
                 print("Correct answer! Continuing")
                 self.waiting_on_input = False
+                arcade.play_sound(arcade.load_sound("assets/sounds/correct.mp3"))
                 self.setup()
                 self.current_state = RUNNING
             elif key == 97 or key == 98 or key == 99 or key == 100:
                 print("Wrong answer! Restarting")
                 self.waiting_on_input = False
+                arcade.play_sound(arcade.load_sound("assets/sounds/wrong.mp3"))
 
                 if self.score > self.high_score:
                     self.high_score = self.score
