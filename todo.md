@@ -11,3 +11,4 @@
 - [x] Add music and sound effects
 - [ ] Add description to README and code header
 - [ ] Add rockets and change ducking hitbox
+- [ ] Save high-score between sessions
