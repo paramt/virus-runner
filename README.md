@@ -1,5 +1,5 @@
 # Virus Runner
-Educational game about cyber security made with Python arcade
+Educational game about cyber security made with [arcade](https://pypi.org/project/arcade/)
 
 ![Demo](demo.gif)
 
