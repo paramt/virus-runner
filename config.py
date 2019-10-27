@@ -12,12 +12,10 @@ GROUND_SPRITE = "assets/sprites/ground.png"
 PLAYER_SPRITE = "assets/sprites/player.png"
 PLAYER_DUCK = "assets/sprites/playerduck.png"
 PLAYER_JUMP = "assets/sprites/playerjump.png"
-ROCKET_SPRITE = "assets/sprites/Rocket.png"
 
 CHARACTER_SCALING = 2
 TILE_SCALING = 0.5
 OBSTACLE_SCALING = 1.75
-ROCKET_SCALING = 1.75
 
 # Backgrounds
 TITLE_IMAGE = "assets/images/title.png"
@@ -34,7 +32,7 @@ DIFFICULTY = 0 # Initial difficulty (0 - 1)
 
 # Game states
 TITLE = 1
-HELP = 2 
+HELP = 2
 CONTROLS = 2.5
 RUNNING = 3
 GAMEOVER = 4
