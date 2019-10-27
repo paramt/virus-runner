@@ -6,13 +6,18 @@ SCREEN_HEIGHT = 800
 SCREEN_TITLE = "Virus Run"
 FONT = "assets/fonts/ARCADECLASSIC.ttf"
 
-# Sprites
+# Assets
 OBSTACLE_SPRITE = "assets/sprites/pylon.png"
 GROUND_SPRITE = "assets/sprites/ground.png"
 PLAYER_SPRITE = "assets/sprites/player.png"
 PLAYER_DUCK = "assets/sprites/playerduck.png"
 PLAYER_JUMP = "assets/sprites/playerjump.png"
 
+CORRECT_SFX = "assets/sounds/correct.mp3"
+WRONG_SFX = "assets/sounds/wrong.mp3"
+MUSIC = "assets/sounds/music.mp3"
+
+# Scaling
 CHARACTER_SCALING = 2
 TILE_SCALING = 0.5
 OBSTACLE_SCALING = 1.75
