@@ -13,6 +13,8 @@ Educational game about cyber security made with Python arcade
 
 **Stomp** with <kbd>S</kbd> or <kbd>🡓</kbd> 
 
+**Answer** questions with <kbd>A</kbd>, <kbd>B</kbd>, <kbd>C</kbd>, or <kbd>D</kbd>
+
 ### Install
 ```
 pip install -r requirements.txt
