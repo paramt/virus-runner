@@ -110,6 +110,7 @@ class VirusRunner(arcade.Window):
         high_score = f"High score: {self.high_score/10}"
         arcade.draw_text(high_score, 20, SCREEN_HEIGHT - 100, arcade.csscolor.WHITE, 40, font_name=FONT)
 
+    # Display a random question image from assets/images/questions/
     def draw_question(self):
         if not self.waiting_on_input:
             with open('questions.csv') as questions:
@@ -143,8 +144,8 @@ class VirusRunner(arcade.Window):
         arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2,
                                       SCREEN_WIDTH, SCREEN_HEIGHT, background)
 
+    # Render the screen based on the currect state
     def on_draw(self):
-        """ Render the screen """
         if self.current_state == RUNNING:
             self.draw_game()
 
@@ -167,10 +168,9 @@ class VirusRunner(arcade.Window):
             self.draw_game()
             self.draw_question()
 
+    # Called whenever a key is pressed
     def on_key_press(self, key, modifiers):
-        """Called whenever a key is pressed """
-
-        # Change between game states
+       # Check whether the answer is correct
         if self.current_state == GAMEOVER:
             if key == self.correct_answer + 96:
                 print("Correct answer! Continuing")
@@ -190,6 +190,7 @@ class VirusRunner(arcade.Window):
                 self.score = 0
                 self.current_state = RUNNING
 
+         # Change between game states
         elif self.current_state == TITLE:
             if key == arcade.key.SPACE:
                 self.start_zoom = True
@@ -203,6 +204,7 @@ class VirusRunner(arcade.Window):
             self.current_state = TITLE
 
         elif self.current_state == RUNNING:
+            # Toggle on jumping/ducking
             if key == arcade.key.SPACE or key == arcade.key.UP or key == arcade.key.W:
                 self.key_pressed = True
             elif key == arcade.key.DOWN or key == arcade.key.S:
@@ -210,13 +212,14 @@ class VirusRunner(arcade.Window):
                 self.is_ducking = True
 
     def on_key_release(self, key, modifiers):
+        # Toggle off jumping/ducking
         if key == arcade.key.SPACE or key == arcade.key.UP or key == arcade.key.W:
             self.key_pressed = False
         if key == arcade.key.DOWN or key == arcade.key.S:
             self.is_ducking = False
 
+    # Movement and game logic
     def update(self, delta_time):
-        """ Movement and game logic """
         if self.current_state == RUNNING:
             # Check if any obstacles are hit
             collision = arcade.check_for_collision_with_list(self.player_sprite, self.obstacle_list)
@@ -236,6 +239,7 @@ class VirusRunner(arcade.Window):
                     self.num_of_obstacles -= 1
                     print("Removed obstacle")
 
+            # Player movement (jumping and ducking)
             if self.physics_engine.can_jump():
                 if self.is_ducking:
                     self.player_sprite.texture = arcade.load_texture(PLAYER_DUCK, scale=CHARACTER_SCALING)
