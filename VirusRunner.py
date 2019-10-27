@@ -129,20 +129,10 @@ class VirusRunner(arcade.Window):
         arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2,
                                       SCREEN_WIDTH, SCREEN_HEIGHT, background)
 
-    def draw_title_screen(self, width, height):
-        background = arcade.load_texture(TITLE_IMAGE)
-        arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2,
-                                      width, height, background)
-
-    def draw_help_screen(self):
-        background = arcade.load_texture(HELP_IMAGE)
-        arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2,
-                                      SCREEN_WIDTH, SCREEN_HEIGHT, background)
-
-    def draw_controls_screen(self):
-        background = arcade.load_texture(CONTROLS_IMAGE)
-        arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2,
-                                      SCREEN_WIDTH, SCREEN_HEIGHT, background)
+    # Draw a fullscreen background from an image file
+    def draw_image(self, image, width, height):
+        background = arcade.load_texture(image)
+        arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2, width, height, background)
 
     # Render the screen based on the currect state
     def on_draw(self):
@@ -150,13 +140,13 @@ class VirusRunner(arcade.Window):
             self.draw_game()
 
         elif self.current_state == HELP:
-            self.draw_help_screen()
+            self.draw_image(HELP_IMAGE, SCREEN_WIDTH, SCREEN_HEIGHT)
 
         elif self.current_state == CONTROLS:
-            self.draw_controls_screen()
+            self.draw_image(CONTROLS_IMAGE, SCREEN_WIDTH, SCREEN_HEIGHT)
 
         elif self.current_state == TITLE:
-            self.draw_title_screen(SCREEN_WIDTH * self.scale, SCREEN_HEIGHT * self.scale)
+            self.draw_image(TITLE_IMAGE, SCREEN_WIDTH * self.scale, SCREEN_HEIGHT * self.scale)
 
             if self.start_zoom and self:
                 self.scale += 0.05
