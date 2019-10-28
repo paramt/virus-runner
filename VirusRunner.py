@@ -1,6 +1,10 @@
 """
-Virus Runner
-by Anmol, Anujan, Justin, Param
+Filename: VirusRunner.py 
+Names: Anmol, Anujan, Justin, and Param
+Date: October 25, 2019.
+Description: This was made to inform users about cybersecurity while having an enjoyable experience playing a game.
+This runner game was based off of Google Chrome's dino run and the graphis are inspired by Ridley Scott's Blade Runner film.
+The game uses Python Arcade and has 10 multiple choice questions relating to cybersecurity that pop up whenever the user hits an obstacle. 
 """
 
 import csv
