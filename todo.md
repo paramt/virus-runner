@@ -9,6 +9,6 @@
 - [x] Change "press space to continue" to "press any key to go back"
 - [x] Fix "and and" grammar mistake in question 10
 - [x] Add music and sound effects
-- [ ] Add description to README and code header
+- [x] Add description to README and code header
 - [ ] Add rockets and change ducking hitbox
 - [ ] Save high-score between sessions
