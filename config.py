@@ -10,6 +10,7 @@ FONT = "assets/fonts/ARCADECLASSIC.ttf"
 OBSTACLE_SPRITE = "assets/sprites/pylon.png"
 GROUND_SPRITE = "assets/sprites/ground.png"
 PLAYER_SPRITE = "assets/sprites/player.png"
+ROCKET_SPRITE = "assets/sprites/Rocket.png"
 PLAYER_DUCK = "assets/sprites/playerduck.png"
 PLAYER_JUMP = "assets/sprites/playerjump.png"
 
@@ -21,6 +22,7 @@ MUSIC = "assets/sounds/music.mp3"
 CHARACTER_SCALING = 2
 TILE_SCALING = 0.5
 OBSTACLE_SCALING = 1.75
+ROCKET_SCALING = 2.5
 
 # Backgrounds
 TITLE_IMAGE = "assets/images/title.png"

@@ -25,6 +25,7 @@ class VirusRunner(arcade.Window):
         self.ground_list = None
         self.obstacle_list = None
         self.player_list = None
+        self.flying_list = None
 
         # Initialize physics engine
         self.physics_engine = None
@@ -51,6 +52,7 @@ class VirusRunner(arcade.Window):
         self.player_list = arcade.SpriteList()
         self.obstacle_list = arcade.SpriteList()
         self.ground_list = arcade.SpriteList()
+        self.flying_list = arcade.SpriteList()
 
          # Set up the player
         self.player_sprite = arcade.Sprite(PLAYER_SPRITE, CHARACTER_SCALING)
@@ -71,9 +73,15 @@ class VirusRunner(arcade.Window):
         obstacle.position = [random.randint(SCREEN_WIDTH, SCREEN_WIDTH + 100), 96]
         self.obstacle_list.append(obstacle)
 
+        flying = arcade.Sprite(ROCKET_SPRITE, ROCKET_SCALING)
+        flying.position = [random.randint(SCREEN_WIDTH, SCREEN_WIDTH + 100), 400]
+        self.flying_list.append(flying)
+
         self.num_of_obstacles = 0
+        self.num_of_flyings = 0 
         self.difficulty = DIFFICULTY + 0.005
         self.is_ducking = False
+
 
         # Create the physics engine
         self.physics_engine = arcade.PhysicsEnginePlatformer(self.player_sprite, self.ground_list, GRAVITY)
@@ -85,6 +93,25 @@ class VirusRunner(arcade.Window):
         background = arcade.load_texture(BACKGROUND_IMAGE)
         arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2,
                                       SCREEN_WIDTH, SCREEN_HEIGHT, background)
+
+        # Randomly generate obstacles
+       
+        flying = arcade.Sprite(ROCKET_SPRITE, ROCKET_SCALING)
+        flying.position = [random.randint(SCREEN_WIDTH, SCREEN_WIDTH + 100), 400]
+
+        try:
+            # Check to make sure that there is enough space between obstacles
+            gap_exists = flying.position[0] - self.flying_list[self.num_of_flyings].position[0] > 15000
+
+            if random.random() < self.difficulty and gap_exists:
+                self.flying_list.append(flying)
+                self.num_of_flyings += 1
+                self.difficulty += 0.005
+        except IndexError:
+            self.flying_list.append(flying)
+            self.num_of_flyings += 1
+            self.difficulty += 0.005
+
 
         # Randomly generate obstacles
         obstacle = arcade.Sprite(OBSTACLE_SPRITE, OBSTACLE_SCALING)
@@ -103,10 +130,12 @@ class VirusRunner(arcade.Window):
             self.num_of_obstacles += 1
             self.difficulty += 0.005
 
+
         # Draw the sprites
         self.obstacle_list.draw()
         self.ground_list.draw()
         self.player_list.draw()
+        self.flying_list.draw()
 
         # Display score on the screen
         score_text = f"{self.score/10} meters"
@@ -232,6 +261,23 @@ class VirusRunner(arcade.Window):
                     self.obstacle_list.remove(obstacle)
                     self.num_of_obstacles -= 1
                     print("Removed obstacle")
+
+            collision2 = arcade.check_for_collision_with_list(self.player_sprite, self.flying_list)
+
+            if collision2:
+                self.current_state = GAMEOVER
+
+            # Move all the obstacles forward (making it look the like player is moving forward)
+            for flying in self.flying_list:
+                # Multiply speed by delta time to make sure that the speed is consitent
+                # Otherwise the obstacles will move faster on faster processors and vice versa
+                flying.center_x -= delta_time * 800
+
+                # Remove obstacles that aren't visible anymore (to prevent lag)
+                if flying.center_x < -15000:
+                    self.flying_list.remove(flying)
+                    self.num_of_flyings -= 1
+                    print("Removed flyingr")
 
             # Player movement (jumping and ducking)
             if self.physics_engine.can_jump():
