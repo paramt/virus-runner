@@ -14,15 +14,16 @@ Educational game about cyber security made with [arcade](https://pypi.org/projec
 **Answer** questions with <kbd>A</kbd>, <kbd>B</kbd>, <kbd>C</kbd>, or <kbd>D</kbd>
 
 ### Install
+Install the [latest release](https://github.com/paramt/virus-runner/releases)
+
+### Development
 ```
 git clone https://github.com/paramt/virus-runner.git
 
 cd virus-runner/
 
 pip install -r requirements.txt
-```
-> Note: Python 3.7+ is required
-### Play
-```
+
 python VirusRunner.py
 ```
+> Note: Python 3.7+ is required
