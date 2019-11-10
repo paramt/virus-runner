@@ -1,10 +1,10 @@
 """
-Filename: VirusRunner.py 
+Filename: VirusRunner.py
 Names: Anmol, Anujan, Justin, and Param
 Date: October 25, 2019.
 Description: This was made to inform users about cybersecurity while having an enjoyable experience playing a game.
 This runner game was based off of Google Chrome's dino run and the graphis are inspired by Ridley Scott's Blade Runner film.
-The game uses Python Arcade and has 10 multiple choice questions relating to cybersecurity that pop up whenever the user hits an obstacle. 
+The game uses Python Arcade and has 10 multiple choice questions relating to cybersecurity that pop up whenever the user hits an obstacle.
 """
 
 import csv
@@ -78,7 +78,7 @@ class VirusRunner(arcade.Window):
         self.flying_list.append(flying)
 
         self.num_of_obstacles = 0
-        self.num_of_flyings = 0 
+        self.num_of_flyings = 0
         self.difficulty = DIFFICULTY + 0.005
         self.is_ducking = False
 
@@ -95,7 +95,6 @@ class VirusRunner(arcade.Window):
                                       SCREEN_WIDTH, SCREEN_HEIGHT, background)
 
         # Randomly generate obstacles
-       
         flying = arcade.Sprite(ROCKET_SPRITE, ROCKET_SCALING)
         flying.position = [random.randint(SCREEN_WIDTH, SCREEN_WIDTH + 100), 400]
 
