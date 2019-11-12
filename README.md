@@ -1,5 +1,5 @@
 # Virus Runner
-Educational game about cyber security made with [arcade](https://pypi.org/project/arcade/)
+An infinite runner game with an aim to educate players about cybersecurity and risks associated with the web
 
 ![Demo](demo.gif)
 
